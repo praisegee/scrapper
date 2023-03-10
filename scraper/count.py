@@ -12,7 +12,7 @@ with open('./docs/car_links.txt', 'r') as f:
 
 # write the unique values back to the file
 with open('./docs/car_links.txt', 'w') as f:
-  for a in d:
+  for a in list(d):
     f.write(f'{a}\n')
 
 print("Done")

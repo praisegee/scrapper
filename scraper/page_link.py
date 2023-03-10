@@ -17,8 +17,13 @@ def filter_car_link():
     """
     # response = requests.get(f'{base_domain}/cars')
     with open('./docs/links.txt', 'r') as f:
-        list_link = [link.strip() for link in f.readlines()]
-    response = requests.get(f'{base_domain}/{rd.choice(list_link)}/cars')
+        list_link = set([link.strip() for link in f.readlines()])
+        print("Links: ", len(list_link))
+        # print("Links unique: ", len(list(set(list_link))))
+    # response = requests.get(f'{base_domain}/isiala-ngwa/cars')
+    location = rd.choice(list(list_link))
+    print("Location: ", location)
+    response = requests.get(f'{base_domain}/{location}/cars')
     # response = requests.get(f'{base_domain}/cars')
 
     soup = BeautifulSoup(response.content, 'html.parser')
@@ -47,6 +52,6 @@ def filter_car_link():
         for link in links:
             f.write(f'{link}\n')
 
-    # filter_car_link() # to make it recursive
+    filter_car_link() # to make it recursive
 
 filter_car_link()

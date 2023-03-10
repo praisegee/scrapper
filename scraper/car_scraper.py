@@ -87,6 +87,7 @@ class Car:
         values = [value.text for value in self.soup.find_all('div', {'class': values_selector})]
         
         properties = {key.strip(): value.strip().replace('\n', '') for key,value in zip(keys, values)}
+        
         return properties
 
     @property
